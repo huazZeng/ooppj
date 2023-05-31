@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.pj_oop.ClientControll"
+            prefHeight="600" prefWidth="800"
+            stylesheets="@Page.css"
+            styleClass="container">
+    <top>
+        <Label  styleClass="title" BorderPane.alignment="CENTER">推箱子</Label>
+    </top>
+    <center>
+
+
+            <VBox alignment="CENTER" spacing="20">
+                <Button styleClass="button" onAction="#handleBeginButtonClick">单人游戏</Button>
+                <Button styleClass="button" onAction="#handleHelpButtonClick">双人游戏</Button>
+                <Button styleClass="button" onAction="#handleReadButtonClick">读取存档</Button>
+                <Button styleClass="button" onAction="#handleHelpButtonClick">关于游戏</Button>
+            </VBox>
+
+
+    </center>
+
+
+
+</BorderPane>
+

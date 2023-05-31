@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<BorderPane styleClass="container"
+            stylesheets="@Page.css"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.pj_oop.HelpControll"
+            prefHeight="400.0" prefWidth="600.0">
+    <top>
+        <VBox alignment="CENTER">
+            <Text  styleClass="title2">
+                关于游戏
+            </Text>
+        </VBox>
+
+    </top>
+    <center>
+        <VBox>
+            <Text>
+
+            </Text>
+        </VBox>
+    </center>
+    <bottom >
+        <VBox alignment="BOTTOM_RIGHT">
+            <Button  styleClass="button" onAction="#handleReturnButtonClick">
+                返回菜单
+            </Button>
+        </VBox>
+
+    </bottom>
+</BorderPane>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.text.Text?>
+<BorderPane styleClass="container"
+        xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.pj_oop.GamePageController"
+            prefHeight="400.0" prefWidth="600.0"
+            stylesheets="@Page.css"
+onKeyPressed="#Move">
+    <center>
+        <Canvas fx:id="StaticCanvas" width="500" height="500" >
+
+            <!--由游戏内容决定canvas-->
+        </Canvas>
+
+    </center>
+
+    <right>
+        <VBox alignment="CENTER_RIGHT" spacing="30">
+            <Button styleClass="button" onAction="#handleRestartButtonClick">重开关卡</Button>
+            <Button styleClass="button" onAction="#handleReturnButtonClick">返回菜单</Button>
+        </VBox>
+    </right>
+</BorderPane>
