@@ -15,7 +15,7 @@ public class Game {
     private static List<Element[]> map;
 
     private static Player player;
-
+    private static ArrayList<Box> Boxes =new ArrayList<Box>();
     private static Double ImgWidth;
 
     public static Double getImgWidth() {
@@ -35,7 +35,8 @@ public class Game {
             put('0', Empty::new);
             put('1', Wall::new);
             put('2',Empty::new);
-
+            put('5',Empty::new);
+            put('4',finalPoint::new);
         }
     };
 
@@ -44,7 +45,8 @@ public class Game {
     private static HashMap<Character, EntityIcons> CharToEntityIcon =new HashMap<>(){
         {
             put('0',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/empty.png",100,100));
-
+            put('5',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/empty.png",100,100) );
+            put('4',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/background.png",100,100));
             put('1',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/wall.png",100,100));
             put('2',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/empty.png",100,100));
 
@@ -64,6 +66,8 @@ public class Game {
                 for (x_axis=0; x_axis < row.length; x_axis++) {
                     if (row[x_axis].charAt(0)=='2')
                         player=new Player(x_axis,y_axis,new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/character.png",100,100));
+                    if (row[x_axis].charAt(0)=='5')
+                        Boxes.add(new Box(x_axis,y_axis,new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/character.png",100,100)));
                     EntityIcons EntityIconsOfChar=CharToEntityIcon.get(row[x_axis].charAt(0));
                     elements[x_axis]=CharToConstruct.get(row[x_axis].charAt(0)).apply(EntityIconsOfChar);
                 }
@@ -85,6 +89,10 @@ public class Game {
                 gc.drawImage(map.get(y)[x].getEntityIcons().getImage(), ImgWidth*x,ImgWidth*y,ImgWidth,ImgWidth);
             }
         }
+        for (Box e:
+             Boxes) {
+            gc.drawImage(e.getEntityIcons().getImage(), e.getPos_x()*ImgWidth, e.getPos_y()*ImgWidth,ImgWidth,ImgWidth);
+        }
             gc.drawImage(player.getEntityIcons().getImage(), player.getPos_x()*ImgWidth, player.getPos_y()*ImgWidth,ImgWidth,ImgWidth);
     }
 
@@ -100,9 +108,16 @@ public class Game {
     }
 
 
-    public void Move(Integer[] bias ,GraphicsContext gc) {
-        if(player.passby(map,null,bias)){
+    public boolean Move(Integer[] bias ,GraphicsContext gc) {
+        if(player.passby(map,Boxes,bias)){
+            player.setPos_x(player.getPos_x()+bias[0]);
+            player.setPos_y(player.getPos_y()+bias[1]);
             drawMap(gc);
         }
+        for (Box e:Boxes
+             ) {
+            if (!e.isInfinal()) return false;
+        }
+        return true;
     }
 }

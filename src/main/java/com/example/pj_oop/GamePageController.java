@@ -5,12 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Optional;
 
 
 public class GamePageController {
@@ -72,10 +75,13 @@ public class GamePageController {
     }
 @FXML
     public void Move(KeyEvent keyEvent) {
-
+        boolean over=false;
         Integer[] bias=keyCodeHashMap.get(keyEvent.getCode());
-
-        _GameController.Move(bias,gc );
-
+        if (bias!=null)
+            over=_GameController.Move(bias,gc );
+        if (over){
+            Alert Continue =new Alert(Alert.AlertType.INFORMATION,"continue?",new ButtonType("Y"),new ButtonType("N"));
+            Optional<ButtonType> optionalButtonType=Continue.showAndWait();
+        }
     }
 }
