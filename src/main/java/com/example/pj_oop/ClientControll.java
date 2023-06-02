@@ -34,7 +34,7 @@ public class ClientControll {
         if (optionalButtonType.get()==YesButton){
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePage.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-            GamePageController controll=fxmlLoader.getController();
+            SingleGamePageController controll=fxmlLoader.getController();
             controll.setStage(stage);
             controll.Load();
             stage.setScene(scene);

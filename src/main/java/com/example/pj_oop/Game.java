@@ -46,7 +46,7 @@ public class Game {
         {
             put('0',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/empty.png",100,100));
             put('5',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/empty.png",100,100) );
-            put('4',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/background.png",100,100));
+            put('4',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/final.png",100,100));
             put('1',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/wall.png",100,100));
             put('2',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/empty.png",100,100));
 
@@ -54,6 +54,7 @@ public class Game {
     };
     public  void readMap(Integer order,Integer toolCount){
         map = new ArrayList<>();
+        Boxes=new ArrayList<Box>();
         try {
             BufferedReader in = new BufferedReader(new FileReader(OrderToPath.get(order)));
             String str;
@@ -67,7 +68,7 @@ public class Game {
                     if (row[x_axis].charAt(0)=='2')
                         player=new Player(x_axis,y_axis,new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/character.png",100,100));
                     if (row[x_axis].charAt(0)=='5')
-                        Boxes.add(new Box(x_axis,y_axis,new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/character.png",100,100)));
+                        Boxes.add(new Box(x_axis,y_axis,new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/box.png",100,100)));
                     EntityIcons EntityIconsOfChar=CharToEntityIcon.get(row[x_axis].charAt(0));
                     elements[x_axis]=CharToConstruct.get(row[x_axis].charAt(0)).apply(EntityIconsOfChar);
                 }

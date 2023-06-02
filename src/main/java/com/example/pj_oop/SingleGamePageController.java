@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Optional;
 
 
-public class GamePageController {
+public class SingleGamePageController {
     @FXML
     private Canvas StaticCanvas;
     @FXML

@@ -4,12 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 
 public class SelectController {
     private Stage stage;
@@ -37,7 +35,7 @@ public class SelectController {
     private void handleSubmitButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePage.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        GamePageController controll=fxmlLoader.getController();
+        SingleGamePageController controll=fxmlLoader.getController();
         controll.StarNewGame(StringToMap.get(orderSelectionComboBox.getValue())
                 ,StringToCount.get(difficultySelectionComboBox.getValue()));
         stage.setScene(scene);
