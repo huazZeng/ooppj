@@ -1,4 +1,4 @@
-package com.example.pj_oop;
+package com.example.pj_oop.PageControllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

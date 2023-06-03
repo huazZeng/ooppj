@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Text?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.pj_oop.ClientControll"
+            fx:controller="com.example.pj_oop.PageControllers.ClientControll"
             prefHeight="600" prefWidth="800"
             stylesheets="@Page.css"
             styleClass="container">

@@ -9,7 +9,7 @@
 <?import javafx.scene.canvas.Canvas?>
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.pj_oop.DoubleGameController"
+      fx:controller="com.example.pj_oop.PageControllers.DoubleGameController"
       prefHeight="1000.0" prefWidth="1000.0">
     <Canvas fx:id="FirstCanvas" width="500" height="500" >
 

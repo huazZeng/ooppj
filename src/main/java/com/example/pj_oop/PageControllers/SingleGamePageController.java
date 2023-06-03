@@ -1,28 +1,26 @@
-package com.example.pj_oop;
+package com.example.pj_oop.PageControllers;
 
+import com.example.pj_oop.Game;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Optional;
 
 
-public class SingleGamePageController {
+public class SingleGamePageController extends PageController {
     @FXML
     private Canvas StaticCanvas;
     @FXML
     private GraphicsContext gc;
 
-    private Stage stage;
+
 
 
     private Game _GameController=new Game();
@@ -42,13 +40,10 @@ public class SingleGamePageController {
         gc = StaticCanvas.getGraphicsContext2D();
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
+
 
     public void StarNewGame(Integer order,Integer toolCount) {
         _GameController.readMap(order, toolCount);
-
         _GameController.drawMap(gc);
     }
 
@@ -57,11 +52,7 @@ public class SingleGamePageController {
 
 @FXML
     private void handleReturnButtonClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("BeginPage.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setScene(scene);
-        ClientControll controll=fxmlLoader.getController();
-        controll.setStage(stage);
+        super.sceneControll.switchScene("BeginPage.fxml");
     }
     @FXML
     private  void handleRestartButtonClick(){

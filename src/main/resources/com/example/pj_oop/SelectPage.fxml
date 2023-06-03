@@ -11,7 +11,7 @@
 <BorderPane styleClass="container"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.pj_oop.SelectController"
+            fx:controller="com.example.pj_oop.PageControllers.SelectController"
             prefHeight="400.0" prefWidth="600.0"
             stylesheets="@Page.css">
     <top>
