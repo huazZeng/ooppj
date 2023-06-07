@@ -8,7 +8,8 @@
 
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.text.Text?>
-<BorderPane styleClass="container"
+<BorderPane fx:id="container"
+        styleClass="container"
         xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.pj_oop.PageControllers.SingleGamePageController"
@@ -27,6 +28,7 @@ onKeyPressed="#Move">
         <VBox alignment="CENTER_RIGHT" spacing="30">
             <Button styleClass="button" onAction="#handleRestartButtonClick">重开关卡</Button>
             <Button styleClass="button" onAction="#handleReturnButtonClick">返回菜单</Button>
+            <Button styleClass="button" onAction="#handleSaveButtonClick">写入存档</Button>
         </VBox>
     </right>
 </BorderPane>

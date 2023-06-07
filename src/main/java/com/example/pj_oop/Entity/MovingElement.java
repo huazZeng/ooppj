@@ -19,5 +19,5 @@ public abstract class MovingElement extends Element{
         this.entityIcons=entityIcons;
     }
 
-    public abstract boolean passby(List<Element[]> Map, ArrayList<Box> movingElements, Integer[] bias);
+
 }
