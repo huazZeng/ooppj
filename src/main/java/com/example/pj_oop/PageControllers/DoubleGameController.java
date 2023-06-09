@@ -4,7 +4,7 @@ import com.example.pj_oop.Game;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 
-public class DoubleGameController {
+public class DoubleGameController extends PageController {
     @FXML
     private Canvas FirstCanvas;
     @FXML

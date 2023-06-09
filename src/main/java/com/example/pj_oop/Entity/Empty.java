@@ -6,9 +6,15 @@ package com.example.pj_oop.Entity;
  * @date 2023/5/17 10:35
  */
 
-public class Empty extends Element{
-    public Empty(EntityIcons entityIcons) {
-        this.entityIcons = entityIcons;
+public class Empty extends MapElement{
+
+
+    public Empty(char  a) {
+        this.classify='0';
     }
 
+    @Override
+    public boolean passby(MovingElement element) {
+        return true;
+    }
 }

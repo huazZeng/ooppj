@@ -10,12 +10,12 @@
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.pj_oop.PageControllers.DoubleGameController"
-      prefHeight="1000.0" prefWidth="1000.0">
-    <Canvas fx:id="FirstCanvas" width="500" height="500" >
+      prefHeight="600.0" prefWidth="800.0">
+    <Canvas fx:id="FirstCanvas" width="200" height="200" >
 
         <!--由游戏内容决定canvas-->
     </Canvas>
-    <Canvas fx:id="SecondCanvas" width="500" height="500" >
+    <Canvas fx:id="SecondCanvas" width="200" height="200" >
 
         <!--由游戏内容决定canvas-->
     </Canvas>

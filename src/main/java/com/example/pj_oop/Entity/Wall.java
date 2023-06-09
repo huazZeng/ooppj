@@ -6,9 +6,16 @@ package com.example.pj_oop.Entity;
  * @date 2023/5/17 10:34
  */
 
-public class Wall extends Element{
+public class Wall extends MapElement{
 
-    public Wall(EntityIcons entityIcons) {
-        this.entityIcons = entityIcons;
+
+
+    public Wall(char a) {
+        this.classify=a;
+    }
+
+    @Override
+    public boolean passby(MovingElement element) {
+        return false;
     }
 }

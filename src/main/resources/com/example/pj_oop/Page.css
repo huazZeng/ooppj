@@ -48,6 +48,23 @@
         -fx-padding: 5px;
 
 }
+.data{
+       -fx-background-color: #F0F0F0;
+       -fx-text-fill: #333333;
+       -fx-font-size: 14px;
+       -fx-pref-width: 200px;
+        -fx-min-width: 100px;
+        -fx-max-width: 200px;
+}
+.T{
+        -fx-background-color: #F0F0F0;
+        -fx-text-fill: #333333;
+        -fx-font-size: 14px;
+         -fx-pref-width: 200px;
+          -fx-min-width: 100px;
+          -fx-max-width: 200px;
+
+}
 .content{
     -fx-font-size: 20px;
 

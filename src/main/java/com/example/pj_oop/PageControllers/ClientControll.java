@@ -33,6 +33,24 @@ public class ClientControll extends PageController{
         super.sceneControll.switchScene("HelpPage.fxml");
     }
     @FXML
+    private void handleDoubleButtonClick() throws IOException {
+        ButtonType YesButton =new ButtonType("Y");
+        ButtonType NotButton=     new ButtonType("N");
+        Alert Continue =new Alert(Alert.AlertType.INFORMATION,"continue?",YesButton,NotButton);
+        Continue.setTitle("Continue");
+        Optional<ButtonType> optionalButtonType=Continue.showAndWait();
+        if(optionalButtonType.get()==NotButton){
+            super.sceneControll.switchScene("DoubleGamePage.fxml");
+        }
+        if (optionalButtonType.get()==YesButton){
+            PageController controller= super.sceneControll.switchScene("DoubleGamePage.fxml");
+            SingleGamePageController gamePageController= (SingleGamePageController) controller;
+            gamePageController.Load();
+
+
+        }
+    }
+    @FXML
     private void handleHelpButtonClick() throws IOException {
         super.sceneControll.switchScene("HelpPage.fxml");
     }

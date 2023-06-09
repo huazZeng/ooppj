@@ -15,35 +15,36 @@
             prefHeight="400.0" prefWidth="600.0"
             stylesheets="@Page.css">
     <top>
-        <Label styleClass="title2" BorderPane.alignment="CENTER">请选择难度</Label>
+
+            <Label styleClass="title2" BorderPane.alignment="CENTER">请选择难度</Label>
+
     </top>
     <center>
-        <HBox alignment="CENTER" spacing="50">
-            <ComboBox fx:id="orderSelectionComboBox" styleClass="Select">
-                <items>
-                    <FXCollections  fx:factory="observableArrayList">
-                        <String fx:value="关卡1" />
-                        <String fx:value="关卡2" />
-                        <String fx:value="关卡3" />
-                    </FXCollections>
-                </items>
-            </ComboBox>
+        <VBox spacing="50" alignment="CENTER">
+        <TextField  fx:id="playername" BorderPane.alignment="CENTER" styleClass="T">请输入玩家姓名</TextField>
 
-            <ComboBox  fx:id="difficultySelectionComboBox" styleClass="Select" BorderPane.alignment="CENTER_RIGHT">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="困难" />
-                        <String fx:value="普通" />
-                        <String fx:value="简单" />
-                    </FXCollections>
-                </items>
-            </ComboBox>
-        </HBox>
+            <HBox alignment="CENTER" spacing="50">
+                <ComboBox fx:id="orderSelectionComboBox" styleClass="Select">
+                    <items>
+                        <FXCollections  fx:factory="observableArrayList">
+                            <String fx:value="关卡1" />
+                            <String fx:value="关卡2" />
+                            <String fx:value="关卡3" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
 
-
-
-
-
+                <ComboBox  fx:id="difficultySelectionComboBox" styleClass="Select" BorderPane.alignment="CENTER_RIGHT">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="困难" />
+                            <String fx:value="普通" />
+                            <String fx:value="简单" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </HBox>
+        </VBox>
 
 
 

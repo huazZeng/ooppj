@@ -14,16 +14,47 @@ import java.util.List;
 import java.util.function.Function;
 
 public class Game {
-    private ArrayList<Element[]> map=new ArrayList<>();
+    private int validtimecount=0;
+    private int crashtimecount = 0;
+    private int crosstimecount =0;
+
+
+    private int boxcrash =0;
+    private int boxcross=0;
+    public String playername;
+  
+
+    private boolean over =false;
+
+
+
+    private ArrayList<MapElement[]> map=new ArrayList<>();
     private int scenelength;
+
+    public   Player player;
+    private  ArrayList<Box> Boxes =new ArrayList<Box>();
+    private static int ImgWidth;
+
+    public int getValidtimecount() {
+        return validtimecount;
+    }
+
+    public boolean isOver() {
+        return over;
+    }
+
+    public void setOver(boolean over) {
+        this.over = over;
+    }
     public Game(int scenelength){
         this.scenelength=scenelength;
     }
-    private static Player player;
-    private static ArrayList<Box> Boxes =new ArrayList<Box>();
-    private static int ImgWidth;
     public static int getImgWidth() {
         return ImgWidth;
+    }
+
+    public ArrayList<MapElement[]> getMap() {
+        return map;
     }
 
     private static HashMap<KeyCode, Integer[]> keyCodeHashMap =new HashMap<>(){
@@ -45,32 +76,24 @@ public class Game {
 
         }
     };
-    private static HashMap<Character, Function<EntityIcons,Element>> CharToConstruct =new HashMap<>(){
+    private static HashMap<Character, Function<Character,MapElement>> CharToConstruct =new HashMap<>(){
         {
             put('0', Empty::new);
             put('1', Wall::new);
             put('2',Empty::new);
             put('5',Empty::new);
-            put('4',finalPoint::new);
-            put('3',Gap::new);
+            put('3',finalPoint::new);
+            put('4',Gap::new);
         }
     };
 
-    public static ArrayList<Box> getBoxes() {
+    public  ArrayList<Box> getBoxes() {
         return Boxes;
     }
 
-    private static HashMap<Character, EntityIcons> CharToEntityIcon =new HashMap<>(){
-        {
-            put('0',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/empty.png",100,100));
-            put('5',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/empty.png",100,100) );
-            put('4',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/final.png",100,100));
-            put('1',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/wall.png",100,100));
-            put('2',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/empty.png",100,100));
-            put('3',new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/Gap.png",100,100));
-        }
-    };
-    public  void readMap(Integer order,Integer toolCount){
+
+    public  void readMap(Integer order,Integer toolCount,String playername){
+        this.playername=playername;
         map=new ArrayList<>();
         Boxes=new ArrayList<>();
         try {
@@ -80,15 +103,18 @@ public class Game {
             int max_x_axis=0;
             while ((str = in.readLine()) != null) {
                 String[] row = str.split(" ");
-                Element[] elements = new Element[row.length];
+                MapElement[] elements = new MapElement[row.length];
                 int x_axis ;
                 for (x_axis=0; x_axis < row.length; x_axis++) {
-                    if (row[x_axis].charAt(0)=='2')
-                        player=new Player(x_axis,y_axis,toolCount,new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/character.png",100,100));
-                    if (row[x_axis].charAt(0)=='5')
-                        Boxes.add(new Box(x_axis,y_axis,new EntityIcons("src/main/resources/com/example/pj_oop/savespace/img/box.png",100,100)));
-                    EntityIcons EntityIconsOfChar=CharToEntityIcon.get(row[x_axis].charAt(0));
-                    elements[x_axis]=CharToConstruct.get(row[x_axis].charAt(0)).apply(EntityIconsOfChar);
+                    if (row[x_axis].charAt(0)=='2'){
+                        player=new Player(x_axis,y_axis,toolCount);
+                        elements[x_axis]=CharToConstruct.get(row[x_axis].charAt(0)).apply('0');
+                    }
+                    if (row[x_axis].charAt(0)=='5') {
+                        Boxes.add(new Box(x_axis, y_axis));
+                        elements[x_axis]=CharToConstruct.get(row[x_axis].charAt(0)).apply('0');
+                    }
+                    else elements[x_axis]=CharToConstruct.get(row[x_axis].charAt(0)).apply(row[x_axis].charAt(0));
                 }
                 if (x_axis>max_x_axis) max_x_axis=x_axis;
                 map.add(elements);
@@ -101,60 +127,56 @@ public class Game {
 
 
     }
-    public  void drawMap(GraphicsContext gc) {
-        gc.clearRect(0,0,500,500);
-        for(int y=0;y<map.size();y++){
-            for (int x=0;x<map.get(y).length;x++){
-                gc.drawImage(map.get(y)[x].getEntityIcons().getImage(), ImgWidth*x,ImgWidth*y,ImgWidth,ImgWidth);
-            }
-        }
-        for (Box e:
-             Boxes) {
-            gc.drawImage(e.getEntityIcons().getImage(), e.getPos_x()*ImgWidth, e.getPos_y()*ImgWidth,ImgWidth,ImgWidth);
-        }
-            gc.drawImage(player.getEntityIcons().getImage(), player.getPos_x()*ImgWidth, player.getPos_y()*ImgWidth,ImgWidth,ImgWidth);
+    public String toString(){
+        return validtimecount+" "+crashtimecount+" "+crosstimecount+" "+boxcrash+" "+boxcross;
     }
-
-    public void Loadfrom(String path) throws IOException {
+    public int[] Loadfrom(String path) throws IOException {
         BufferedReader in = new BufferedReader(new FileReader(path));
         String input=in.readLine();
+        playername=input;
+
+        input=in.readLine();
         String[] imfor=input.split(" ");
         int Order = Integer.parseInt(imfor[0]);
-        this.readMap(Order,Integer.parseInt(imfor[1]));
-        player.setPos_x(Integer.parseInt(imfor[1]));
-        player.setPos_y(Integer.parseInt(imfor[2]));
+        int toll = Integer.parseInt(imfor[1]);
+        int [] result={Order,toll};
 
-    }
-
-
-    public Boolean Conmandcontroll(KeyEvent keyEvent, GraphicsContext gc){
-        if (keyEvent.getCode()==KeyCode.Q)
-            return true;
-        else if(keyEvent.getCode()==KeyCode.H){
-            player.settool();
-            return false;
+        input=in.readLine();
+        imfor=input.split(" ");
+        this.readMap(Order,Integer.parseInt(imfor[1]),playername);
+        player.setPos_x(Integer.parseInt(imfor[0]));
+        player.setPos_y(Integer.parseInt(imfor[1]));
+        player.setToolcount(Integer.parseInt(imfor[3]));
+        int i=0;
+        while((input=in.readLine())!=null){
+            imfor=input.split(" ");
+            Boxes.get(i).sestatus(Integer.parseInt(imfor[0]),Integer.parseInt(imfor[1]),Boolean.parseBoolean(imfor[2]));
+            i++;
         }
-        else return Move(keyEvent,gc);
+        return result;
     }
 
-    public static Player getPlayer() {
+
+
+    public  Player getPlayer() {
         return player;
     }
 
-    public boolean Move(KeyEvent keyEvent, GraphicsContext gc) {
-        Integer[] bias=keyCodeHashMap.get(keyEvent.getCode());
-        if (player.passby(map, Boxes, bias)) {
-                player.setPos_x(player.getPos_x() + bias[0]);
-                player.setPos_y(player.getPos_y() + bias[1]);
-                drawMap(gc);
-        }
-
+    public boolean Move(Integer[] bias) {
+        validtimecount++;
+        boolean result=player.move(map,Boxes,bias);
+        over=true;
         for (Box e : Boxes
         ) {
-                if (!e.isInfinal()) return false;
+                if (!e.isInfinal()){
+                    over=false;
+                    break;
+                }
+
         }
-        return true;
-        }
+
+        return result;
+    }
 
 
 }

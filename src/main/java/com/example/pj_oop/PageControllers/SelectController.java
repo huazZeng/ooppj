@@ -2,6 +2,7 @@ package com.example.pj_oop.PageControllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,7 +11,8 @@ public class SelectController extends PageController {
 
     @FXML
     public ComboBox<String> difficultySelectionComboBox;
-
+    @FXML
+    private TextField playername;
     @FXML
     public ComboBox<String> orderSelectionComboBox;
 
@@ -30,7 +32,7 @@ public class SelectController extends PageController {
         PageController controller= sceneControll.switchScene("GamePage.fxml");
         SingleGamePageController gamecontroller=(SingleGamePageController)controller;
         gamecontroller.StarNewGame(StringToMap.get(orderSelectionComboBox.getValue())
-                ,StringToCount.get(difficultySelectionComboBox.getValue()));
+                ,StringToCount.get(difficultySelectionComboBox.getValue()),playername.getText());
 
 
 

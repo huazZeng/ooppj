@@ -3,7 +3,7 @@ package com.example.pj_oop.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MovingElement extends Element{
+public abstract class MovingElement{
     protected int pos_x;
     protected int pos_y;
     public int getPos_x() {
@@ -13,10 +13,10 @@ public abstract class MovingElement extends Element{
     public int getPos_y() {
         return pos_y;
     }
-    public MovingElement(int pos_x,int pos_y,EntityIcons entityIcons){
+    public MovingElement(int pos_x,int pos_y){
         this.pos_x=pos_x;
         this.pos_y=pos_y;
-        this.entityIcons=entityIcons;
+
     }
 
 

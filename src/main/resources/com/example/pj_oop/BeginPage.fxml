@@ -22,7 +22,7 @@
 
             <VBox alignment="CENTER" spacing="20">
                 <Button styleClass="button" onAction="#handleBeginButtonClick">单人游戏</Button>
-                <Button styleClass="button" onAction="#handleHelpButtonClick">双人游戏</Button>
+                <Button styleClass="button" onAction="#handleDoubleButtonClick">双人游戏</Button>
                 <Button styleClass="button" onAction="#handleReadButtonClick">读取存档</Button>
                 <Button styleClass="button" onAction="#handleHelpButtonClick">关于游戏</Button>
             </VBox>
