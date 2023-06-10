@@ -15,9 +15,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 
@@ -123,7 +121,7 @@ public class SingleGamePageController extends PageController {
     }
 
     public void Load() throws IOException {
-        int[] result=this._GameController.Loadfrom("src/main/resources/com/example/pj_oop/savespace/file/singlelasttime.txt");
+        int[] result=this._GameController.Loadfrom(new BufferedReader(new FileReader("src/main/resources/com/example/pj_oop/savespace/file/singlelasttime.txt")));
         stringProperty=new SimpleStringProperty("Playername:"+_GameController.playername+"\n"+"toolcount:"
                 +_GameController.player.getToolcount()+"\nstepcount:"+_GameController.getValidtimecount()) ;
         game_data.textProperty().bind(stringProperty);
@@ -136,6 +134,7 @@ public class SingleGamePageController extends PageController {
     public void KeyBoardHandler(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode()==KeyCode.Q){
             _GameController.setOver(true);
+            _GameController.IsQuit=true;
         }
         else if(keyEvent.getCode()==KeyCode.H) {
             _GameController.getPlayer().settool();
@@ -151,7 +150,7 @@ public class SingleGamePageController extends PageController {
             Continue.setTitle("Continue");
             Optional<ButtonType> optionalButtonType=Continue.showAndWait();
             if(optionalButtonType.get()==NotButton){
-                super.sceneControll.switchScene("BeginGamePage.fxml");
+                super.sceneControll.switchScene("BeginPage.fxml");
             }
             if (optionalButtonType.get()==YesButton){
                 PageController controller= super.sceneControll.switchScene("SelectPage.fxml");
@@ -177,6 +176,7 @@ public class SingleGamePageController extends PageController {
                 writer.write(e.toString()+'\n');
 
             }
+            writer.write("END\n");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -36,9 +36,10 @@
 
     <bottom>
         <HBox alignment="CENTER" spacing="50" >
-            <Button styleClass="button" >重开关卡</Button>
-            <Button styleClass="button" >返回菜单</Button>
-            <Button styleClass="button">写入存档</Button>
+            <Button styleClass="button"  onMouseClicked="#handleReturnButtonClick">重开关卡</Button>
+            <Button styleClass="button" onMouseClicked="#handleReturnButtonClick" >返回菜单</Button>
+            <Button styleClass="button" onMouseClicked="#handleSaveButtonClick">写入存档</Button>
+            <Button styleClass="button" onMouseClicked="#handlechangebutton">切换对象 </Button>
         </HBox>
     </bottom>
 

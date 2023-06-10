@@ -1,22 +1,18 @@
 package com.example.pj_oop;
 
 import com.example.pj_oop.Entity.*;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.function.Function;
 
 public class Game {
     private int validtimecount=0;
-
+    public boolean IsQuit=false;
     public String playername;
   
 
@@ -126,8 +122,7 @@ public class Game {
     public String toString(){
         return  validtimecount+"";
     }
-    public int[] Loadfrom(String path) throws IOException {
-        BufferedReader in = new BufferedReader(new FileReader(path));
+    public int[] Loadfrom(BufferedReader in) throws IOException {
         String input=in.readLine();
         playername=input;
 
@@ -137,16 +132,17 @@ public class Game {
         int toll = Integer.parseInt(imfor[1]);
         this.validtimecount=Integer.parseInt(imfor[2]);
         int [] result={Order,toll};
-
         input=in.readLine();
         imfor=input.split(" ");
         this.readMap(Order,Integer.parseInt(imfor[1]),playername);
+
+
         player.setPos_x(Integer.parseInt(imfor[0]));
         player.setPos_y(Integer.parseInt(imfor[1]));
         player.setToolcount(Integer.parseInt(imfor[3]));
         player.settimes(Integer.parseInt(imfor[4]),Integer.parseInt(imfor[5]));
         int i=0;
-        while((input=in.readLine())!=null){
+        while(!(input=in.readLine()).equals("END")){
             imfor=input.split(" ");
             Boxes.get(i).sestatus(Integer.parseInt(imfor[0]),Integer.parseInt(imfor[1]),Boolean.parseBoolean(imfor[2]));
             Boxes.get(i).settimes(Integer.parseInt(imfor[3]),Integer.parseInt(imfor[4]));
@@ -177,5 +173,12 @@ public class Game {
         return result;
     }
 
-
+    public int getfinalcount(){
+        int boxtimecount=0;
+        for (Box a:
+             Boxes  ) {
+            boxtimecount+=a.gettimecount();
+        }
+        return validtimecount+player.gettimecount()+boxtimecount;
+    }
 }

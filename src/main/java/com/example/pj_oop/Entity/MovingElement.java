@@ -28,4 +28,7 @@ public abstract class MovingElement{
         crashtime=i;
         throughtime=j;
     }
+    public  int gettimecount(){
+        return throughtime+crashtime;
+    }
 }

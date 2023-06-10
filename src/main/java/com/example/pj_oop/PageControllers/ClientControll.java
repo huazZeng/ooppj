@@ -40,11 +40,11 @@ public class ClientControll extends PageController{
         Continue.setTitle("Continue");
         Optional<ButtonType> optionalButtonType=Continue.showAndWait();
         if(optionalButtonType.get()==NotButton){
-            PageController controller= super.sceneControll.switchScene("DoubleGamePage.fxml");
-            ((DoubleGameController)controller).StarNewGame(1,1,"ww","ww2");
+            PageController controller= super.sceneControll.switchScene("doubleselect.fxml");
         }
         if (optionalButtonType.get()==YesButton){
             PageController controller= super.sceneControll.switchScene("DoubleGamePage.fxml");
+            ((DoubleGameController)controller).Load();
 
         }
     }

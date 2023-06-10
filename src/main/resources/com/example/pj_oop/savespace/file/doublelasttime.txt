@@ -1,0 +1,12 @@
+ww
+1 2 15 
+7 6 false 2 0 0
+1 7 true 0 0
+8 6 true 0 1
+END
+qq
+1 2 7 
+1 6 false 2 0 1
+1 7 true 0 0
+7 6 false 0 0
+END
