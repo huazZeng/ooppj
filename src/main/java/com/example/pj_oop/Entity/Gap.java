@@ -9,8 +9,14 @@ public class Gap extends MapElement{
 
     @Override
     public boolean passby(MovingElement element) {
-        if (element instanceof Player) return true;
-        else if(element instanceof Box && ((Box) element).playstatus) return true;
+        if (element instanceof Player){
+            element.add(0);
+            return true;
+        }
+        else if(element instanceof Box && ((Box) element).playstatus){
+            element.add(0);
+            return true;
+        }
         else return false;
     }
 }

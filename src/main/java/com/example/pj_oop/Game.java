@@ -1,6 +1,7 @@
 package com.example.pj_oop;
 
 import com.example.pj_oop.Entity.*;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -15,12 +16,7 @@ import java.util.function.Function;
 
 public class Game {
     private int validtimecount=0;
-    private int crashtimecount = 0;
-    private int crosstimecount =0;
 
-
-    private int boxcrash =0;
-    private int boxcross=0;
     public String playername;
   
 
@@ -128,7 +124,7 @@ public class Game {
 
     }
     public String toString(){
-        return validtimecount+" "+crashtimecount+" "+crosstimecount+" "+boxcrash+" "+boxcross;
+        return  validtimecount+"";
     }
     public int[] Loadfrom(String path) throws IOException {
         BufferedReader in = new BufferedReader(new FileReader(path));
@@ -139,6 +135,7 @@ public class Game {
         String[] imfor=input.split(" ");
         int Order = Integer.parseInt(imfor[0]);
         int toll = Integer.parseInt(imfor[1]);
+        this.validtimecount=Integer.parseInt(imfor[2]);
         int [] result={Order,toll};
 
         input=in.readLine();
@@ -147,10 +144,12 @@ public class Game {
         player.setPos_x(Integer.parseInt(imfor[0]));
         player.setPos_y(Integer.parseInt(imfor[1]));
         player.setToolcount(Integer.parseInt(imfor[3]));
+        player.settimes(Integer.parseInt(imfor[4]),Integer.parseInt(imfor[5]));
         int i=0;
         while((input=in.readLine())!=null){
             imfor=input.split(" ");
             Boxes.get(i).sestatus(Integer.parseInt(imfor[0]),Integer.parseInt(imfor[1]),Boolean.parseBoolean(imfor[2]));
+            Boxes.get(i).settimes(Integer.parseInt(imfor[3]),Integer.parseInt(imfor[4]));
             i++;
         }
         return result;

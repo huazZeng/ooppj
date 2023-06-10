@@ -59,7 +59,7 @@ public class SingleGamePageController extends PageController {
 
 
 
-    private void thekeyboardfilter(KeyEvent E){
+    private void thekeyboardfilter(KeyEvent E) throws IOException{
         if (AccessableKeyborad.contains(E.getCode())){
             KeyBoardHandler(E);
         }
@@ -67,15 +67,23 @@ public class SingleGamePageController extends PageController {
 
 
 
-    public void initialize() {
+    public void initialize(){
 
         gc = StaticCanvas.getGraphicsContext2D();
-        this.container.addEventFilter(KeyEvent.KEY_PRESSED,this::thekeyboardfilter);
+        this.container.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+            try {
+                thekeyboardfilter(e);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
     }
 
 
 
     public void StarNewGame(Integer order,Integer toolCount,String playername) {
+        _GameController=new Game(500);
         noworder=order;
         nowtoolcount=toolCount;
         _GameController.readMap(order, toolCount,playername);
@@ -125,7 +133,7 @@ public class SingleGamePageController extends PageController {
 
     }
 @FXML
-    public void KeyBoardHandler(KeyEvent keyEvent) {
+    public void KeyBoardHandler(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode()==KeyCode.Q){
             _GameController.setOver(true);
         }
@@ -139,9 +147,17 @@ public class SingleGamePageController extends PageController {
         if (_GameController.isOver()){
             ButtonType YesButton =new ButtonType("Y");
             ButtonType NotButton=     new ButtonType("N");
-            Alert Continue =new Alert(Alert.AlertType.INFORMATION,"continue?",YesButton,NotButton);
+            Alert Continue =new Alert(Alert.AlertType.INFORMATION,"continue",YesButton,NotButton);
             Continue.setTitle("Continue");
             Optional<ButtonType> optionalButtonType=Continue.showAndWait();
+            if(optionalButtonType.get()==NotButton){
+                super.sceneControll.switchScene("BeginGamePage.fxml");
+            }
+            if (optionalButtonType.get()==YesButton){
+                PageController controller= super.sceneControll.switchScene("SelectPage.fxml");
+
+
+            }
         }
 
 
@@ -154,7 +170,7 @@ public class SingleGamePageController extends PageController {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(_GameController.playername+'\n');
-            writer.write(noworder+" "+_GameController.toString()+" "+"\n");
+            writer.write(noworder+" "+nowtoolcount+" "+_GameController.toString()+" "+"\n");
             writer.write(_GameController.getPlayer().toString()+'\n');
             for (Box e:
                  _GameController.getBoxes()) {

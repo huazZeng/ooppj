@@ -7,17 +7,40 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.canvas.Canvas?>
-<HBox xmlns="http://javafx.com/javafx"
+<BorderPane styleClass="container2"
+            fx:id="container"
+        xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.pj_oop.PageControllers.DoubleGameController"
-      prefHeight="600.0" prefWidth="800.0">
-    <Canvas fx:id="FirstCanvas" width="200" height="200" >
+      prefHeight="600.0" prefWidth="800.0"
+      stylesheets="@Page.css"
+    >
+    <top>
 
-        <!--由游戏内容决定canvas-->
-    </Canvas>
-    <Canvas fx:id="SecondCanvas" width="200" height="200" >
+    </top>
 
-        <!--由游戏内容决定canvas-->
-    </Canvas>
 
-</HBox>
+    <center>
+        <HBox spacing="100" alignment="CENTER">
+            <Canvas fx:id="FirstCanvas" width="330" height="330" >
+
+                <!--由游戏内容决定canvas-->
+            </Canvas>
+            <Canvas fx:id="SecondCanvas" width="330" height="330" >
+
+                <!--由游戏内容决定canvas-->
+            </Canvas>
+        </HBox>
+
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" spacing="50" >
+            <Button styleClass="button" >重开关卡</Button>
+            <Button styleClass="button" >返回菜单</Button>
+            <Button styleClass="button">写入存档</Button>
+        </HBox>
+    </bottom>
+
+
+</BorderPane>

@@ -43,7 +43,7 @@ public class Player extends MovingElement{
 
     @Override
     public String toString() {
-        return pos_x+" "+pos_y+' '+toolstaus+' '+toolcount;
+        return pos_x+" "+pos_y+' '+toolstaus+' '+toolcount+' '+crashtime+" "+throughtime;
     }
     public boolean move(List<MapElement[]> Map, ArrayList<Box> movingElements, Integer[] bias){
         if (passby(Map, movingElements, bias)){

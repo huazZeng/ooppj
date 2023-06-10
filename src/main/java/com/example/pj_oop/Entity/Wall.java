@@ -16,6 +16,7 @@ public class Wall extends MapElement{
 
     @Override
     public boolean passby(MovingElement element) {
+        element.add(1);
         return false;
     }
 }

@@ -1,5 +1,5 @@
 ww
-2 14 0 0 0 0 
-1 6 false 2
-1 7 true
-7 6 false
+1 2 6 
+1 6 false 2 0 0
+1 7 true 0 0
+7 6 false 0 0

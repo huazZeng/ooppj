@@ -6,6 +6,8 @@ import java.util.List;
 public abstract class MovingElement{
     protected int pos_x;
     protected int pos_y;
+    protected int crashtime=0;
+    protected   int throughtime=0;
     public int getPos_x() {
         return pos_x;
     }
@@ -18,6 +20,12 @@ public abstract class MovingElement{
         this.pos_y=pos_y;
 
     }
-
-
+    public void add(int i){
+        if (i==0) crashtime++;
+        if (i==1) throughtime++;
+    }
+    public void settimes(int i,int j){
+        crashtime=i;
+        throughtime=j;
+    }
 }

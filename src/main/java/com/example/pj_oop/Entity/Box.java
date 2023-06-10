@@ -16,7 +16,7 @@ public class Box extends MovingElement{
 
     @Override
     public String toString() {
-        return pos_x+" "+pos_y+" "+infinal;
+        return pos_x+" "+pos_y+" "+infinal+' '+crashtime+" "+throughtime;
     }
     public boolean move(List<MapElement[]> Map, ArrayList<Box> movingElements, Integer[] bias, boolean toolstaus,boolean ispushbox){
         if (passby(Map, movingElements, bias, toolstaus,ispushbox)){
